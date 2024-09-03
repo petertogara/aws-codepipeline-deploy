@@ -53,6 +53,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>ws-codepipeline-deploy</finalName>
 	</build>
 
 </project>

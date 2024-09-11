@@ -33,7 +33,7 @@ phases:
       - echo Pushing the Docker image to Amazon ECR...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo "Writing image definitions file..."
-      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"aws-codepipeline-deploy-ecr","imageUri":"520675424784.dkr.ecr.us-west-1.amazonaws.com/aws-codepipeline-deploy-ecr:latest"}]' > imagedefinitions.json
       - echo Printing imagedefinitions.json:
       - cat imagedefinitions.json
 artifacts:

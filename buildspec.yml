@@ -28,13 +28,11 @@ phases:
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
+      - echo Image Tag name $IMAGE_TAG
       - echo Build completed on `date`
       - echo Pushing the Docker image to Amazon ECR...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - echo "DOCKER_CONTAINER_NAME: $DOCKER_CONTAINER_NAME"
-      - echo "REPOSITORY_URI: $REPOSITORY_URI"
-      - echo "IMAGE_TAG: $IMAGE_TAG"
+      - echo "Writing image definitions file..."
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo Printing imagedefinitions.json:
       - cat imagedefinitions.json

@@ -1,11 +1,11 @@
 version: 0.2
 env:
   variables:
-    TAG: latest
-    AWS_DEFAULT_REGION: us-west-1
-    DOCKER_CONTAINER_NAME: aws-codepipeline-deploy-ecr
-    ACCOUNT_ID: 520675424784
-    REPOSITORY_URI: $ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_CONTAINER_NAME
+    TAG: "latest"
+    AWS_DEFAULT_REGION: "us-west-1"
+    DOCKER_CONTAINER_NAME: "aws-codepipeline-deploy-ecr"
+    ACCOUNT_ID: "520675424784"
+    REPOSITORY_URI: "$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_CONTAINER_NAME"
 phases:
   install:
     commands:
@@ -32,7 +32,7 @@ phases:
       - echo Pushing the Docker image to Amazon ECR...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      #- echo Writing image definitions file...
+      - echo Writing image definitions file...
       - echo "DOCKER_CONTAINER_NAME: $DOCKER_CONTAINER_NAME"
       - echo "REPOSITORY_URI: $REPOSITORY_URI"
       - echo "IMAGE_TAG: $IMAGE_TAG"

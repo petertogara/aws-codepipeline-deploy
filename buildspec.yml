@@ -5,7 +5,6 @@ env:
     AWS_DEFAULT_REGION: "us-west-1"
     DOCKER_CONTAINER_NAME: "aws-codepipeline-deploy-ecr"
     ACCOUNT_ID: "520675424784"
-    REPOSITORY_URI: "$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_CONTAINER_NAME"
 phases:
   install:
     commands:
@@ -15,6 +14,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR....
       - aws --version
+      - REPOSITORY_URI="$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_CONTAINER_NAME"
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}') # Dynamic image tag based on the build ID
 
